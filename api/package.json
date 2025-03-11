@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --exec ts-node --files src/index.ts",
     "start:test": "cross-env NODE_ENV='test' DB_DATABASE='jira_test' npm start",
-    "start:production": "pm2 start --name 'jira_api' node -- -r ./tsconfig-paths.js build/index.js",
+    "start:production": "pm2-runtime start --name 'jira_api' node -- -r ./tsconfig-paths.js build/index.js",
     "build": "cd src && tsc",
     "pre-commit": "lint-staged"
   },
@@ -31,7 +31,7 @@
     "@types/jsonapi-serializer": "^3.6.2",
     "@types/jsonwebtoken": "^8.3.5",
     "@types/lodash": "^4.14.149",
-    "@types/node": "^12.12.11",
+    "@types/node": "^12.20.55",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/parser": "^2.7.0",
     "cross-env": "^6.0.3",

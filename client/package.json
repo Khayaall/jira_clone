@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
-    "start:production": "pm2 start --name 'jira_client' server.js",
+    "start:production": "pm2-runtime start --name 'jira_client' server.js",
     "test:jest": "jest",
     "test:cypress": "node_modules/.bin/cypress open",
     "build": "rm -rf build && webpack --config webpack.config.production.js --progress",
@@ -20,6 +20,7 @@
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "@cypress/webpack-preprocessor": "^4.1.1",
+    "@types/node": "^22.13.10",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.3.2",

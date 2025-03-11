@@ -10,7 +10,7 @@ COPY package-lock.json .
 RUN npm install
 
 # Install TypeScript globally
-RUN npm install -g typescript
+RUN npm install -g typescript pm2
 
 COPY . .     
 # Copy all files from the current directory which is all the files in the api to the WORKDIR  first . means current directory second . means the WORKDIR
