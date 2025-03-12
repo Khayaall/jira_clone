@@ -4,11 +4,13 @@ services:
   postgres:
     image: postgres:latest
     restart: always
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=pass123
       - POSTGRES_DB=jira_developments #database name by default
-    ports:
-      - "5432:5432"
+    # secrets:
+    #   - db_password
     networks:
       - jira_network
     volumes:
@@ -16,14 +18,14 @@ services:
 
   api:
     container_name: jira_api
-    restart: unless-stopped
     image: jira-api-prod:92.1 #image name with version I defined
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
     build:
       context: api
       target: production
       dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
     networks:
       - jira_network
     depends_on:
@@ -31,18 +33,21 @@ services:
 
   client:
     container_name: jira_client
-    restart: unless-stopped
     image: jira-client-prod:92.1 #image name with version I defined
+    restart: unless-stopped
+    ports:
+      - "8080:8081"
     build:
       context: client
       target: production
       dockerfile: Dockerfile
-    ports:
-      - "8080:8081"
     networks:
       - jira_network
     depends_on:
-      - api #depends on postgres service
+      - api #depends on api service
 
 networks:
   jira_network:
+# secrets:
+#   db_password:
+#     file: ./db_password.txt    #file containing the password for postgres service
