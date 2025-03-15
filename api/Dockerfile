@@ -4,8 +4,7 @@ ENV NODE_ENV=production
 
 WORKDIR /usr/src/api
 
-COPY package.json .
-COPY package-lock.json .
+COPY package*.json .
 
 RUN npm install
 
@@ -17,5 +16,8 @@ COPY . .
 
 RUN npm run build 
 # This command will run the build script in the package.json file
+
+EXPOSE 3000  
+# Expose port 3000 to the outside world this is the port that the api will run on
 
 CMD ["sh", "-c" , "npm run start:production"]
